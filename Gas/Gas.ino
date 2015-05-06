@@ -40,8 +40,6 @@ void loop()
 		{
 			Serial.print("Retracting");
 			brake();
-			wasStopped = true;
-			fullyExtended = false;
 		}
 	}
 }
