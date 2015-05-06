@@ -5,8 +5,8 @@
 // m1a m1b ground m2a = black wire m2b = red wire
 AF_DCMotor motor(2);
 // Adding APMIN
-int APMIN = 13;
-
+int APMPIN=13;
+int APM_value=0;
 
 volatile bool wasStopped = true;
 volatile bool fullyExtended = false;
@@ -15,35 +15,36 @@ void setup() {
   attachInterrupt(0, brake, FALLING);
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("Motor party!");
-  pinMode(APMIN, INPUT)
+  pinMode(APMPIN, INPUT);
   motor.setSpeed(200);
   motor.run(RELEASE);
 }
 
 int i;
-int j;
+//int j;
 void loop()
 {
-	if ( 1550 < APMIN < 1900  ) //Going forward
+        APM_value=pulseIn(APMPIN,HIGH);
+        Serial.print(APM_value);
+        delay(1000);
+	if (APM_value > 1550) //Going forward
 	{
-		if (wasStopped && !fullyExtended)
-		{
-			Serial.print("Inside extend");
-			accelerate();
-			wasStopped = false;
-			fullyExtended = true;
-		}
+                if (wasStopped && !fullyExtended)
+  		{
+  			Serial.print("Inside extend");
+  			accelerate();
+  			wasStopped = false;
+  		  	fullyExtended = true;
+  		}		
 	}
-	if ( 1350 < APMIN < 1550  ) //Stopping
-	{
-		if (!wasStopped && fullyExtended)
-		{
-			Serial.print("Retracting");
-			brake();
-			wasStopped = true;
-			fullyExtended = false;
-		}
-	}
+//	if (APM_value < 1550) //Stopping
+//	{
+//                Serial.print("Martin");
+//		brake();
+//	}
+
+
+
 }
 
 void brake()
@@ -53,7 +54,7 @@ void brake()
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
-    for (i = 0; i < 62; i++)
+    for (i = 0; i < 300; i++)
     {
       delayMicroseconds(16000);
     }
@@ -72,7 +73,7 @@ void accelerate()
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD IN ACCELERATE\n");
   motor.setSpeed(255);
-  delay(1000);
+  delay(4000);
   Serial.print("BEFORE RELEASE IN ACCELERATE\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE IN ACCELERATE\n");
