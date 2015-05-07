@@ -25,23 +25,23 @@ int i;
 void loop()
 {
         APM_value=pulseIn(APMPIN,HIGH);
-        Serial.print(APM_value);
+        //Serial.print(APM_value);
         delay(1000);
 	if (APM_value > 1550) //Going forward
 	{
                 if (wasStopped && !fullyExtended)
   		{
-  			Serial.print("Inside extend");
+  			Serial.print("Inside accelerate if statment\n");
   			accelerate();
   			wasStopped = false;
   		  	fullyExtended = true;
   		}		
 	}
-//	if (APM_value < 1550) //Stopping
-//	{
-//                Serial.print("Martin");
-//		brake();
-//	}
+	if (APM_value < 1550) //Stopping
+	{
+               Serial.print("inside brake if statement\n");
+		brake();
+	}
 
 
 
@@ -51,6 +51,7 @@ void brake()
 {
   if (!fullyRetracted)
   {
+    Serial.print(APM_value);
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
@@ -69,13 +70,15 @@ void brake()
 }
 void accelerate()
 {
+  Serial.print(APM_value);
   // Serial.print("Forward function");
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD IN ACCELERATE\n");
   motor.setSpeed(255);
-  delay(4000);
+  delay(4200);
   Serial.print("BEFORE RELEASE IN ACCELERATE\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE IN ACCELERATE\n");
   fullyRetracted = false;
 }
+
