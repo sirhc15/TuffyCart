@@ -5,12 +5,12 @@
 // center: 1350-1550
 // right: 1000-1350
 #include <AFMotor.h>
-#include <Servo.h>
 
 // DC motor on M2
 AF_DCMotor motor(2);
 
 int APMIN = 13;
+int APM_value;
 //int VCC = 10;
 //int GND = 11;
 bool left_turn = false;
@@ -26,19 +26,16 @@ void setup() {
   motor.run(RELEASE);
 }
 
-int i;
 void loop()
 {
-  Serial.print("Inside LOOP before digitalwrite");
-
-  Serial.print("Inside LOOP AFTER digitalwrite");
-  if ( 1550 < APMIN < 1850 && !left_turn  ) //left turning
+  APM_value = pulseIn(APMIN, HIGH);
+  if ( (1550 < APM_value) && (APM_value < 1850) && !left_turn  ) //left turning
   {
     right_turn = false;
     left_turn = true;
     retract();
   }
-  if (1350 < APMIN < 1550) // straight
+  if ((1350 < APM_value) && (APM_value< 1550)) // straight
   {
     if (left_turn)
     {
@@ -51,7 +48,7 @@ void loop()
       retract();
     }
   }
-  if (1000 < APMIN < 1350 && !right_turn) //right turning
+  if ((1000 < APM_value) && (APM_value < 1350) && !right_turn) //right turning
   {
     left_turn = false;
     right_turn = true;
@@ -61,6 +58,7 @@ void loop()
 
 void retract()// left turn
 {
+  Serial.print(APM_value);
   motor.run(BACKWARD);
   Serial.print("AFTER BACKWARD RETRACT\n");
   motor.setSpeed(255);
@@ -73,6 +71,7 @@ void retract()// left turn
 void extend()//right turn
 {
   // Serial.print("Forward function");
+  Serial.print(APM_value);
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD EXTEND\n");
   motor.setSpeed(255);
