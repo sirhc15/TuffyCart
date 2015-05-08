@@ -18,14 +18,14 @@ void setup()
 
 void loop() 
 {
-  long time, soundDistance;
+  long soundTime, soundDistance;
   digitalWrite(trigger, LOW); 
   delayMicroseconds(4);
   digitalWrite(trigger, HIGH);
   delayMicroseconds(8);
   digitalWrite(trigger, LOW);
-  time = pulseIn(echo, HIGH);
-  soundDistance = microsecsToinches(time);
+  soundTime = pulseIn(echo, HIGH);
+  soundDistance = microsecsToinches(soundTime);
   
   if (soundDistance <= 24) 
   {
