@@ -1,5 +1,5 @@
 //HC-SR04 - Ultrasonic Sound Sensor
-/* To be used after motion has been detected by PIR sensor which will send a signal if the 
+/* To be used after a change in heat has been detected by PIR sensor which will send a signal if the 
 ultrasonic sound sensor detects something/someone within 2 feet */
 
 #define echo 11
