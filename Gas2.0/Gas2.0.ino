@@ -101,7 +101,7 @@ void brake()
   
   if(fullyRetracted)
   {
-    while((soundDistance <=24) || (counter!=0)) //Will wait for 5 seconds, check if the object/person is within 2 feet 
+    while((soundDistance <=24) || (counter!=0)) //Will wait for 5 seconds and also check if the object/person is within 2 feet 
     {
       digitalWrite(trigger, LOW); 
       delayMicroseconds(4);
