@@ -16,8 +16,8 @@ int APM_value;
 
 #define echo 11           //Ultrasonic sound sensor echo pin
 #define trigger 12        //Ultrasonic sound sensor trigger pin
-#define cont_interrupt 13 
-#define ledpin 14
+//#define cont_interrupt 13 
+//#define ledpin 14
 
 volatile bool wasStopped = true;
 volatile bool fullyExtended = false;
