@@ -52,11 +52,7 @@ void brake()
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
-<<<<<<< HEAD
     for (i = 0; i < 125; i++)
-=======
-    for (int i = 0; i < 187; i++)
->>>>>>> origin/master
     {
       delayMicroseconds(16000);
     }
