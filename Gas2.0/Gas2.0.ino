@@ -33,8 +33,8 @@ void setup()
   pinMode(APMPIN, INPUT);
   pinMode(trigger, INPUT);
   pinMode(echo, OUTPUT);
-  pinMode(ledpin, OUTPUT);
-  pinMode(cont_interrupt, OUTPUT);
+  //pinMode(ledpin, OUTPUT);
+  //pinMode(cont_interrupt, OUTPUT);
   motor.setSpeed(200);
   motor.run(RELEASE);
 }
