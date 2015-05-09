@@ -99,7 +99,7 @@ void brake()
     fullyRetracted = true;
   }
   
-  if(fullRetracted)
+  if(fullyRetracted)
   {
     while((soundDistance <=24) || (counter!=0)) //Will wait for 5 seconds, check if the object/person is within 2 feet 
     {
