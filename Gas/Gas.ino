@@ -25,8 +25,7 @@ int i;
 void loop()
 {
   APM_value = pulseIn(APMPIN, HIGH);
-  //Serial.print(APM_value);
-  delay(1000);
+
   if (APM_value > 1550) //Going forward
   {
     if (wasStopped && !fullyExtended)
@@ -55,7 +54,7 @@ void brake()
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
-    for (i = 0; i < 187; i++)
+    for (i = 0; i < 125; i++)
     {
       delayMicroseconds(16000);
     }
@@ -75,7 +74,7 @@ void accelerate()
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD IN ACCELERATE\n");
   motor.setSpeed(255);
-  delay(3000);
+  delay(2000);
   Serial.print("BEFORE RELEASE IN ACCELERATE\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE IN ACCELERATE\n");
