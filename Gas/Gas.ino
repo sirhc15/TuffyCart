@@ -11,8 +11,10 @@ int APM_value;
 volatile bool wasStopped = true;
 volatile bool fullyExtended = false;
 volatile bool fullyRetracted = true;
-void setup() {
-  attachInterrupt(0, brake, FALLING);
+void setup() 
+{
+  attachInterrupt(0, brake, FALLING); //Right PIR sensor
+  attachInterrupt(1, brake, FALLING); //Left PIR sensor 
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("Motor party!");
   pinMode(APMPIN, INPUT);
@@ -20,8 +22,6 @@ void setup() {
   motor.run(RELEASE);
 }
 
-int i;
-//int j;
 void loop()
 {
   APM_value = pulseIn(APMPIN, HIGH);
@@ -36,14 +36,12 @@ void loop()
       fullyExtended = true;
     }
   }
+  
   if (APM_value < 1550) //Stopping
   {
     Serial.print("inside brake if statement\n");
     brake();
   }
-
-
-
 }
 
 void brake()
@@ -54,7 +52,11 @@ void brake()
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
+<<<<<<< HEAD
     for (i = 0; i < 125; i++)
+=======
+    for (int i = 0; i < 187; i++)
+>>>>>>> origin/master
     {
       delayMicroseconds(16000);
     }
