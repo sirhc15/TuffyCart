@@ -8,6 +8,7 @@ AF_DCMotor motor(2);
 int APMPIN = 13;
 int APM_value;
 
+int i;
 volatile bool wasStopped = true;
 volatile bool fullyExtended = false;
 volatile bool fullyRetracted = true;
