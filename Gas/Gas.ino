@@ -57,7 +57,7 @@ void brake()
     {
       delayMicroseconds(16000);
     }*/
-    delay(2000);
+    delay(1500);
     Serial.print("BEFORE RELEASE IN BRAKE\n");
     motor.run(RELEASE);
     Serial.print("AFTER RELEASE IN BRAKE\n");
@@ -74,7 +74,7 @@ void accelerate()
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD IN ACCELERATE\n");
   motor.setSpeed(255);
-  delay(2000);
+  delay(1500);
   Serial.print("BEFORE RELEASE IN ACCELERATE\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE IN ACCELERATE\n");

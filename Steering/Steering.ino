@@ -62,7 +62,7 @@ void retract()// left turn
   motor.run(BACKWARD);
   Serial.print("AFTER BACKWARD RETRACT\n");
   motor.setSpeed(255);
-  delay(3000);
+  delay(12000);
   Serial.print("BEFORE RELEASE RETRACT\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE RETRACT\n");
@@ -75,7 +75,7 @@ void extend()//right turn
   motor.run(FORWARD);
   Serial.print("AFTER FORWARD EXTEND\n");
   motor.setSpeed(255);
-  delay(3000);
+  delay(12000);
   Serial.print("BEFORE RELEASE EXTEND\n");
   motor.run(RELEASE);
   Serial.print("AFTER RELEASE EXTEND\n");
