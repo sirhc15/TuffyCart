@@ -14,7 +14,7 @@ volatile bool fullyExtended = false;
 volatile bool fullyRetracted = true;
 void setup() 
 {
-  //attachInterrupt(0, brake, FALLING); //Right PIR sensor
+  attachInterrupt(0, brake, FALLING); //Right PIR sensor
   //attachInterrupt(1, brake, FALLING); //Left PIR sensor 
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("Motor party!");
@@ -53,11 +53,11 @@ void brake()
     motor.run(BACKWARD);
     Serial.print("AFTER BACKWARD IN BRAKE\n");
     motor.setSpeed(255);
-    /*for (i = 0; i < 125; i++)
+    for (i = 0; i < 93; i++)
     {
       delayMicroseconds(16000);
-    }*/
-    delay(1500);
+    }
+    //delay(1500);
     Serial.print("BEFORE RELEASE IN BRAKE\n");
     motor.run(RELEASE);
     Serial.print("AFTER RELEASE IN BRAKE\n");
